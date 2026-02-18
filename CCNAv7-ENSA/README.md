@@ -1,4 +1,4 @@
-Project structure
+# Project structure
 
 - configs/base/: Full base configs for routers/switches. Paste these if you want a complete router config.
 - configs/ospf/: Full OSPF blocks per-router for reference or bulk application.
