@@ -17,3 +17,21 @@ All notable changes to this lab repository are recorded here.
   - `configs/access control and NAT/RT02-NAT.cfg` — NAT/PAT example for RT02 and interface direction notes (extracted from RT02-SECURITY.cfg).
 
 - Documentation: updated `README.md` with TFTP backup instructions and a note about the new NAT files.
+
+## 2026-02-18 - Access control, NAT, and backup helpers
+
+- Security / ACLs:
+  - `configs/access control and NAT/RT02-SECURITY.cfg` — created/updated ACL to control access to the web server at `209.165.201.1`. ACLs were tuned so LAN hosts can reach required services while remote/unauthorized SSH/HTTPS is denied. The ACL is applied on the upstream interface to avoid filtering internal LAN traffic.
+
+- NAT:
+  - `configs/access control and NAT/RT01-NAT.cfg` — NAT/PAT config for RT01 to translate `192.168.1.0/24` to the RT1 outside interface with overload.
+  - `configs/access control and NAT/RT02-NAT.cfg` — NAT/PAT example for RT02 (reference / extracted).
+
+- Backup/TFTP helpers:
+  - `configs/access control and NAT/RT01-BACKUP.cfg` — sets TFTP source interfaces on RT01 (`ip tftp source-interface GigabitEthernet0/0/0` and `GigabitEthernet0/0/1`) to ensure the TFTP server replies route back correctly.
+  - `configs/access control and NAT/RT02-BACKUP.cfg` — sets TFTP source interface on RT02 (`ip tftp source-interface GigabitEthernet0/0/1`).
+
+- Repo updates:
+  - `README.md` — expanded with project overview, file summary, TFTP backup guidance, and verification commands.
+
+All files are located under `configs/access control and NAT/` and `configs/ospf/` and were added on 2026-02-18 as part of the lab completion.
