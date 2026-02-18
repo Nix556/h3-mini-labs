@@ -9,7 +9,6 @@
 ## What you built in this lab
 
 - `configs/access control and NAT/RT01-NAT.cfg`: NAT/PAT config for RT01 and a `router ospf 1` `no network 192.168.1.0 0.0.0.255 area 0` block to remove the R1 LAN from OSPF.
-- `configs/access control and NAT/RT02-NAT.cfg`: NAT/PAT example for RT02 (extracted from RT02 security config).
 - `configs/access control and NAT/RT01-BACKUP.cfg`: sets `ip tftp source-interface GigabitEthernet0/0/0` and `GigabitEthernet0/0/1` (RT01 backup helper).
 - `configs/access control and NAT/RT02-BACKUP.cfg`: sets `ip tftp source-interface GigabitEthernet0/0/1` (RT02 backup helper).
 - `configs/access control and NAT/RT02-SECURITY.cfg`: access-list used to control access to the web server (adjusted to allow LAN traffic and TFTP where needed).
@@ -17,7 +16,6 @@
 Quick file links:
 
 - [configs/access control and NAT/RT01-NAT.cfg](configs/access%20control%20and%20NAT/RT01-NAT.cfg)
-- [configs/access control and NAT/RT02-NAT.cfg](configs/access%20control%20and%20NAT/RT02-NAT.cfg)
 - [configs/access control and NAT/RT01-BACKUP.cfg](configs/access%20control%20and%20NAT/RT01-BACKUP.cfg)
 - [configs/access control and NAT/RT02-BACKUP.cfg](configs/access%20control%20and%20NAT/RT02-BACKUP.cfg)
 - [configs/access control and NAT/RT02-SECURITY.cfg](configs/access%20control%20and%20NAT/RT02-SECURITY.cfg)
@@ -56,6 +54,6 @@ write memory
 
 - `show running-config | section router ospf`
 - `show ip ospf neighbor`
-- `show access-lists RT1-NAT` (or RT2-NAT / RT2-SECURITY)
+- `show access-lists RT1-NAT` (or RT2-SECURITY)
 - `show running-config interface GigabitEthernet0/0/0`
 - `show ip nat translations` and `show ip nat statistics` (after generating traffic)
