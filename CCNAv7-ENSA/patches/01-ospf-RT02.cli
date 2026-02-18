@@ -1,0 +1,20 @@
+conf t
+
+router ospf 1
+ router-id 0.0.0.2
+ network 10.67.254.0 0.0.0.3 area 0
+ network 10.67.1.0 0.0.0.255 area 0
+ passive-interface default
+ no passive-interface GigabitEthernet0/0/0
+ auto-cost reference-bandwidth 1000
+ default-information originate
+!
+interface GigabitEthernet0/0/0
+ ip ospf hello-interval 30
+ ip ospf priority 50
+!
+! Static default route using Loopback0 as the exit interface
+ip route 0.0.0.0 0.0.0.0 Loopback0
+
+end
+write memory
