@@ -4,7 +4,7 @@ All notable changes to this lab repository are recorded here.
 
 ## 17-02-2026
 
-- Configured base for both RT01, RT02, SW01 and SW02.
+- Configured the base for RT01, RT02, SW01 and SW02.
 
 ## 18-02-2026 - OSPF setup and optimizations
 
