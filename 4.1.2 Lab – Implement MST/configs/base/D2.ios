@@ -35,5 +35,6 @@ vlan 5
  name FifthVLAN
  exit
 
+! Saveing the configuration
 end
 wr
