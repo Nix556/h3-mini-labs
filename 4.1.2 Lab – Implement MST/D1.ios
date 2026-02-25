@@ -1,8 +1,8 @@
 conf t
 
-! A1 configuration for Multiple Spanning Tree
-hostname A1
-banner motd # A1, Multiple Spanning Tree #
+! D2 configuration for Multiple Spanning Tree
+hostname D1
+banner motd # D1, Multiple Spanning Tree #
 spanning-tree mode rapid-pvst
 
 ! Console line configuration
@@ -12,17 +12,16 @@ line con 0
  exit
 
 ! Interface configuration
-interface range f0/1-24, g0/1-2
+interface range g1/0/1-24, g1/1/1-4, g0/0
  shutdown
  exit
-interface range f0/1-4
+interface range g1/0/1, g1/0/5-6
  switchport mode trunk
- no shutdown
-interface f0/23
  no shutdown
  exit
 
 ! VLAN configuration
+ exit
 vlan 2
  name SecondVLAN
  exit
