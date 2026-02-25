@@ -13,7 +13,7 @@ line con 0
  exit
 
 ! Interface configuration
-interface range g1/0/1-24, g1/1/1-4
+interface range g1/0/1-24, g1/1/1-4, g0/0
  shutdown
  exit
 interface range g1/0/1-4
