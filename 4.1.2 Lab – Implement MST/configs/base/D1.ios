@@ -1,8 +1,9 @@
 conf t
+clock timezone UTC 0
 
 ! D2 configuration for Multiple Spanning Tree
-hostname D2
-banner motd # D2, Multiple Spanning Tree #
+hostname D1
+banner motd # D1, Multiple Spanning Tree #
 spanning-tree mode rapid-pvst
 
 ! Console line configuration
@@ -21,6 +22,7 @@ interface range g1/0/1, g1/0/5-6
  exit
 
 ! VLAN configuration
+ exit
 vlan 2
  name SecondVLAN
  exit
@@ -33,3 +35,6 @@ vlan 4
 vlan 5
  name FifthVLAN
  exit
+
+end
+wr

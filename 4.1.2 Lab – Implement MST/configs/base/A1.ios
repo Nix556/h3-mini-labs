@@ -1,4 +1,5 @@
 conf t
+clock timezone UTC 0
 
 ! A1 configuration for Multiple Spanning Tree
 hostname A1
@@ -35,3 +36,6 @@ vlan 4
 vlan 5
  name FifthVLAN
  exit
+
+end
+wr
