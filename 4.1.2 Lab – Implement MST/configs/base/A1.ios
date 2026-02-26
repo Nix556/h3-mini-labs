@@ -19,6 +19,7 @@ interface range g1/0/1-24, g1/1/1-4, g0/0
 interface range g1/0/1-4
  switchport mode trunk
  no shutdown
+ exit
 interface g1/0/23
  no shutdown
  exit
@@ -37,6 +38,6 @@ vlan 5
  name FifthVLAN
  exit
 
-! Saveing the configuration
+! Saving the configuration
 end
 wr
