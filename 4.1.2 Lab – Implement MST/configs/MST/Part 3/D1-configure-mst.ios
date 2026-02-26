@@ -10,3 +10,6 @@ spanning-tree mst configuration
 
 end
 wr
+
+! Verify MST configuration
+show spanning-tree mst
