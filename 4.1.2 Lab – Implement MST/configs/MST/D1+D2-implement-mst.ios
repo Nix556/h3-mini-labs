@@ -1,0 +1,14 @@
+! Configure MST on D1 and D2
+conf t
+spanning-tree mode mst
+
+end
+wr
+
+! Verify MST configuration on D1
+show spanning-tree
+show spanning-tree mst
+
+! Check spanning-tree root on D2
+conf t
+spanning-tree mode root
