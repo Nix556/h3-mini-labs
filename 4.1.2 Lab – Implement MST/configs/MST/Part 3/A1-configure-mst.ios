@@ -11,4 +11,18 @@ spanning-tree mst configuration
 end
 wr
 
-!
+! Adjust cost of interfaces
+interface range g1/0/1-2
+ shutdown
+ exit
+
+interface g1/0/2
+ spanning-tree mst 1 cost 1000
+ exit
+
+interface g1/0/1-2
+ no shutdown
+ exit
+
+end
+wr
