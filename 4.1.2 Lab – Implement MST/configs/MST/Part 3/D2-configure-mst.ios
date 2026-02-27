@@ -14,3 +14,21 @@ spanning-tree mst 2 root primary
 
 end
 wr
+
+! Adjust port priority values
+conf t
+
+interface range g1/0/5-6
+ shutdown
+ exit
+
+interface g1/0/6
+ spanning-tree mst 1 port-priority 64
+ exit
+
+interface g1/0/5-6
+ no shutdown
+ exit
+
+end
+wr
