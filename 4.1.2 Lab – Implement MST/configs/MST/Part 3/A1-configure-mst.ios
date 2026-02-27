@@ -1,0 +1,14 @@
+! Configure MST configuration on A1
+conf t
+
+spanning-tree mst configuration
+ name CCNPv8
+ revision 2
+ instance 1 vlan 2-3
+ instance 2 vlan 4-5
+ exit
+
+end
+wr
+
+!

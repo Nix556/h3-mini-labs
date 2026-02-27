@@ -1,11 +1,11 @@
-! Configure MST configuration on D1
+! Configure MST configuration on D2
 conf t
 
 spanning-tree mst configuration
  name CCNPv8
- revision 1
- instance 1 vlan 2
- instance 2 vlan 4
+ revision 2
+ instance 1 vlan 2-3
+ instance 2 vlan 4-5
  exit
 
 ! Controlling the Root Bridge
