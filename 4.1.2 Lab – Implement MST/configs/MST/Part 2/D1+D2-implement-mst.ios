@@ -10,5 +10,4 @@ show spanning-tree
 show spanning-tree mst
 
 ! Check spanning-tree root on D2
-conf t
-spanning-tree mode root
+show spanning-tree mode root
