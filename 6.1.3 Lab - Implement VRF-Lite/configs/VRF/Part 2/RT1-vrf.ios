@@ -8,8 +8,6 @@ vrf definition Customer_B
  address-family ipv6
  exit
 
-#####
-
 interface g0/0/0
  vrf forwarding Customer_A
  ip address 10.1.2.1 255.255.255.0

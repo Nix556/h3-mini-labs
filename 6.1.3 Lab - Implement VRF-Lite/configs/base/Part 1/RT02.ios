@@ -1,7 +1,7 @@
 enable
 configure terminal
 clock timezone UTC 0
-hostname R2
+hostname RT2
 no ip domain lookup
 ipv6 unicast-routing
 banner motd # RT2, Implement VRF-Lite #
