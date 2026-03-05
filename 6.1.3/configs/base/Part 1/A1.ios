@@ -1,5 +1,6 @@
 enable
 configure terminal
+clock timezone UTC 0
 hostname A1
 no ip domain lookup
 banner motd # A1, Implement VRF-Lite #

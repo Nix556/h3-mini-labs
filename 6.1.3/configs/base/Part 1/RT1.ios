@@ -1,5 +1,6 @@
 enable
 configure terminal
+clock timezone UTC 0
 hostname R1
 no ip domain lookup
 ipv6 unicast-routing

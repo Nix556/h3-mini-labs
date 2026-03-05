@@ -30,7 +30,7 @@ interface g0/0/1
  no shutdown
  exit
 interface g0/0/1.5
- encapsulation dot1Q 15
+ encapsulation dot1Q 5
  vrf forwarding Customer_B
  ip address 10.1.2.1 255.255.255.0
  ipv6 address fe80::1:2 link-local
