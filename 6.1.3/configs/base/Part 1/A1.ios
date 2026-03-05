@@ -1,0 +1,39 @@
+enable
+configure terminal
+hostname A1
+no ip domain lookup
+banner motd # A1, Implement VRF-Lite #
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ exit
+line vty 0 4
+ privilege level 15
+ password cisco123
+ exec-timeout 0 0
+ logging synchronous
+ login
+ exit
+interface range gi1/0/1-24, g1/1/1-4
+ shutdown
+ exit
+vlan 5
+ name D1
+ exit
+vlan 8
+ name D2
+ exit
+interface gi1/0/11
+ switchport mode trunk
+ switchport nonegotiate
+ no shutdown
+ exit
+interface gi1/0/1
+ switchport mode access
+ switchport access vlan 5
+ no shutdown
+ exit
+interface gi1/0/3
+ switchport mode access
+ switchport access vlan 8
+ no shutdown
