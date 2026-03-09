@@ -1,0 +1,2 @@
+ipv6 router ospf 123
+passive-interface g1/0/23
