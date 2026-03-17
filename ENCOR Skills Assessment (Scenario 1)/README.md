@@ -255,11 +255,11 @@ Traps:
 
 Denne lab kombinerer mange teknologier:
 
-* **Layer 2** → VLAN, trunk, STP, EtherChannel
-* **Layer 3** → OSPF + BGP
-* **Redundans** → HSRP + IP SLA
-* **Security** → AAA + RADIUS
-* **Management** → NTP, Syslog, SNMP
+* **Layer 2** - VLAN, trunk, STP, EtherChannel
+* **Layer 3** - OSPF + BGP
+* **Redundans** - HSRP + IP SLA
+* **Security** - AAA + RADIUS
+* **Management** - NTP, Syslog, SNMP
 
 Det er basically en “mini enterprise network” hvor alt spiller sammen.
 
