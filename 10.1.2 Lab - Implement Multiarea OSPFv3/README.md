@@ -244,3 +244,15 @@ default-information originate
 
 Det betyder at alle routere i netværket lærer en default route via R2.
 Hvis routerne ikke kender destinationen, sender de trafikken til R2.
+
+D1# show ipv6 interface brief
+D1# show ipv6 cef
+D1# show ipv6 ospf
+D1# show ipv6 protocols
+D1# show ipv6 ospf neighbor
+RT1# show ipv6 route ospf
+RT1# show ip ospfv3 neighbor
+D1# show ipv6 route ospf
+RT1# show ip route ospfv3
+D1# show ipv6 ospf database
+RT1# show ospfv3 database
