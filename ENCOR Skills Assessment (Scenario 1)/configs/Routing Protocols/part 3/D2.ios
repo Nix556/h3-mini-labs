@@ -1,0 +1,30 @@
+enable
+conf t
+
+router ospf 4
+ router-id 0.0.4.132
+ network 10.0.100.0 0.0.0.255 area 0
+ network 10.0.101.0 0.0.0.255 area 0
+ network 10.0.102.0 0.0.0.255 area 0
+ network 10.0.11.0 0.0.0.255 area 0
+ passive-interface default
+ no passive-interface g1/0/11
+ exit
+ipv6 router ospf 6
+ router-id 0.0.6.132
+ passive-interface default
+ no passive-interface g1/0/11
+ exit
+interface g1/0/11
+ ipv6 ospf 6 area 0
+ exit
+interface vlan 100
+ ipv6 ospf 6 area 0
+ exit
+interface vlan 101
+ ipv6 ospf 6 area 0
+ exit
+interface vlan 102
+ ipv6 ospf 6 area 0
+ exit
+end

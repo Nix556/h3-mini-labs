@@ -1,0 +1,23 @@
+enable
+conf t
+
+hostname R3
+ipv6 unicast-routing
+no ip domain lookup
+banner motd # R3, ENCOR Skills Assessment, Scenario 1 #
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ exit
+interface g0/0/1
+ ip address 10.0.11.1 255.255.255.0
+ ipv6 address fe80::3:2 link-local
+ ipv6 address 2001:db8:100:1011::1/64
+ no shutdown
+ exit
+interface s0/1/0
+ ip address 10.0.13.3 255.255.255.0
+ ipv6 address fe80::3:3 link-local
+ ipv6 address 2001:db8:100:1010::2/64
+ no shutdown
+ exit

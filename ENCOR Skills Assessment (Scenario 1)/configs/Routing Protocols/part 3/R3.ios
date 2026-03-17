@@ -1,0 +1,18 @@
+enable
+conf t
+
+router ospf 4
+ router-id 0.0.4.3
+ network 10.0.11.0 0.0.0.255 area 0
+ network 10.0.13.0 0.0.0.255 area 0
+ exit
+ipv6 router ospf 6
+ router-id 0.0.6.3
+ exit
+interface g0/0/1
+ ipv6 ospf 6 area 0
+ exit
+interface s0/1/0
+ ipv6 ospf 6 area 0
+ exit
+end

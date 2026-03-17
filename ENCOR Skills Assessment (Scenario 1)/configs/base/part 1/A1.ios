@@ -1,0 +1,31 @@
+enable
+conf t
+
+hostname A1
+no ip domain lookup
+banner motd # A1, ENCOR Skills Assessment, Scenario 1 #
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ exit
+vlan 100
+ name Management
+ exit
+vlan 101
+ name UserGroupA
+ exit
+vlan 102
+ name UserGroupB
+ exit
+vlan 999
+ name NATIVE
+ exit
+interface vlan 100
+ ip address 10.0.100.3 255.255.255.0
+ ipv6 address fe80::a1:1 link-local
+ ipv6 address 2001:db8:100:100::3/64
+ no shutdown
+ exit
+interface range f0/5-22
+ shutdown
+ exit

@@ -1,0 +1,19 @@
+enable 
+conf t
+clock timezone UTC 0
+
+ ntp server 2.2.2.2
+ logging trap warning
+ logging host 10.0.100.5
+ logging on
+ip access-list standard SNMP-NMS
+  permit host 10.0.100.5
+  exit
+ snmp-server contact Cisco Student
+ snmp-server community ENCORSA ro SNMP-NMS
+ snmp-server host 10.0.100.5 version 2c ENCORSA
+ snmp-server ifindex persist
+ snmp-server enable traps bgp
+ snmp-server enable traps config
+ snmp-server enable traps ospf
+end

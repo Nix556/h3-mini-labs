@@ -1,0 +1,21 @@
+enable
+conf t
+
+ip route 0.0.0.0 0.0.0.0 loopback 0
+ipv6 route ::/0 loopback 0
+router bgp 500
+ bgp router-id 2.2.2.2
+ neighbor 209.165.200.225 remote-as 300
+ neighbor 2001:db8:200::1 remote-as 300
+ address-family ipv4
+  neighbor 209.165.200.225 activate
+  no neighbor 2001:db8:200::1 activate
+  network 2.2.2.2 mask 255.255.255.255
+  network 0.0.0.0
+  exit-address-family
+ address-family ipv6
+  no neighbor 209.165.200.225 activate
+  neighbor 2001:db8:200::1 activate
+  network 2001:db8:2222::/128
+  network ::/0
+  exit-address-family

@@ -1,0 +1,6 @@
+enable
+conf t
+clock timezone UTC 0
+
+ntp master 3
+end

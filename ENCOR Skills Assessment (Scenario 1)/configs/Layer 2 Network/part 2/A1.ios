@@ -1,0 +1,29 @@
+enable
+conf t
+
+spanning-tree mode rapid-pvst
+interface range f0/1-2
+ switchport mode trunk
+ switchport trunk native vlan 999
+ channel-group 1 mode active
+ no shutdown
+ exit
+interface range f0/3-4
+ switchport mode trunk
+ switchport trunk native vlan 999
+ channel-group 2 mode active
+ no shutdown
+ exit
+interface f0/23
+ switchport mode access
+ switchport access vlan 101
+ spanning-tree portfast
+ no shutdown
+ exit
+interface f0/24
+ switchport mode access
+ switchport access vlan 100
+ spanning-tree portfast
+ no shutdown
+ exit
+end
