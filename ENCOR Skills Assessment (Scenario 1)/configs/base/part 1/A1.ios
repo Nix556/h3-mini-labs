@@ -26,6 +26,6 @@ interface vlan 100
  ipv6 address 2001:db8:100:100::3/64
  no shutdown
  exit
-interface range f0/5-22
+interface range g1/0/5-22
  shutdown
  exit
