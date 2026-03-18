@@ -1,8 +1,8 @@
 enable
 conf t
 
-ip route 0.0.0.0 0.0.0.0 loopback 0
-ipv6 route ::/0 loopback 0
+ip route 0.0.0.0 0.0.0.0 loopback0
+ipv6 route ::/0 loopback0
 router bgp 500
  bgp router-id 2.2.2.2
  neighbor 209.165.200.225 remote-as 300
