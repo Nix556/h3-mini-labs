@@ -10,7 +10,7 @@ ip sla 6
  frequency 5
  exit
 ip sla schedule 4 life forever start-time now
-ip sla schedule 6 life-forever start-time now
+ip sla schedule 6 life forever start-time now
 track 4 ip sla 4
  delay down 10 up 15
  exit
