@@ -9,5 +9,14 @@ radius server RADIUS
  address ipv4 10.0.100.6 auth-port 1812 acct-port 1813
  key $trongPass
  exit
-aaa authentication login default group radius local
+aaa group server radius RAD-GROUP
+ server name RADIUS
+aaa authentication login default group RAD-GROUP local
+line vty 0 4
+ login authentication default
+ transport input ssh
+ exit
+line vty 5 15
+ login authentication default
+ transport input ssh
 end
