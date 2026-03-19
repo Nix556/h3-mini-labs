@@ -20,6 +20,8 @@ interface s0/1/0
 !
 ip route 10.0.0.0 255.0.0.0 null0
 ipv6 route 2001:db8:100::/48 null0
+ip route 0.0.0.0 0.0.0.0 209.165.200.226
+ipv6 route ::/0 2001:db8:200::2
 !
 router bgp 300
  bgp router-id 1.1.1.1
