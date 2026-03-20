@@ -1,0 +1,55 @@
+! ENCOR SA Scenario 1 - VERIFY
+
+
+! Part 2: Layer 2
+! (D1, D2)
+show interfaces trunk
+show run | include spanning-tree
+show run interface g1/0/23
+
+! (A1)
+show run interface f0/23
+show run interface f0/24
+
+! Part 3: Routing
+! (R1, R3, D1, D2)
+show run | section ^router ospf
+show run | section ^ipv6 router
+show ipv6 ospf interface brief
+
+! (R1, R2)
+show run | section router bgp
+show run | include route
+
+! (R1)
+show ip route | include O|B
+show ipv6 route
+
+! (R3)
+show ip route ospf | begin Gateway
+show ipv6 route ospf
+
+! Part 4: FHRP
+! (D1, D2)
+show run | section ip sla
+show standby brief
+
+! Part 5: Security
+! (All devices)
+show run | include secret
+
+! (All except R2)
+show run aaa | exclude !
+
+! Part 6: Management 
+! (All devices)
+show clock
+show run | include ntp
+
+! (R1, R3, D1, D2, A1)
+show ntp status | include stratum
+
+! (All except R2)
+show run | include logging
+show ip access-list SNMP-NMS
+show run | include snmp
