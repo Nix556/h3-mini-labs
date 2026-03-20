@@ -1,0 +1,20 @@
+enable
+conf t
+ipv6 unicast-routing
+router ospfv3 123
+address-family ipv4 unicast
+ router-id 1.1.1.1
+ exit-address-family
+address-family ipv6 unicast
+router-id 1.1.1.1
+ exit-address-family
+exit
+interface g0/0/0
+ ospfv3 123 ipv4 area 0
+ ospfv3 123 ipv6 area 0
+ exit
+interface g0/0/1
+ ospfv3 123 ipv4 area 1
+ ospfv3 123 ipv6 area 1
+ exit
+end

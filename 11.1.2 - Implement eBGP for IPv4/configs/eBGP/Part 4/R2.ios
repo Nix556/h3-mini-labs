@@ -1,0 +1,11 @@
+enable
+conf t
+router bgp 500
+ aggregate-address 192.168.1.0 255.255.255.0 summary-only
+ exit
+router bgp 500
+ no aggregate-address 192.168.1.0 255.255.255.0 summary-only
+ aggregate-address 192.168.1.0 255.255.255.0 as-set summary-only
+ exit
+end
+ 

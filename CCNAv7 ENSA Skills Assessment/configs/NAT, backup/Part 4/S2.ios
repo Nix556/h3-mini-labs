@@ -1,0 +1,4 @@
+enable
+conf t
+ip tftp source-interface Vlan1
+end

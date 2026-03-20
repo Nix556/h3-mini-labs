@@ -1,0 +1,18 @@
+enable
+conf t
+spanning-tree mst configuration
+ name CCNPv8
+ revision 2
+ instance 1 vlan 2-3
+ instance 2 vlan 4-5
+ exit
+interface range g1/0/1-2
+ shutdown
+ exit
+interface g1/0/2
+ spanning-tree mst 1 cost 1000
+ exit
+interface g1/0/1-2
+ no shutdown
+ exit
+end

@@ -1,0 +1,5 @@
+enable
+conf t
+show spanning-tree mode root
+show spanning-tree mode mst
+end 

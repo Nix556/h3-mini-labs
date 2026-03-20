@@ -1,0 +1,4 @@
+enable
+conf t
+spanning-tree mode mst
+end

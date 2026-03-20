@@ -1,0 +1,38 @@
+enable
+conf t
+hostname S1
+no ip domain-lookup
+ip domain-name ccnalab.com
+service password-encryption
+enable secret ciscoenpass
+username admin privilege 15 password admin1pass
+security passwords min-length 10
+interface Vlan1
+ description Management VLAN
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+ exit
+interface range GigabitEthernet1/0/1 - 24
+ shutdown
+ exit
+interface GigabitEthernet1/0/5
+ no shutdown
+ exit
+interface GigabitEthernet1/0/6
+ no shutdown
+ exit
+ip default-gateway 192.168.1.1
+line con 0
+ password ciscoconpass
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 10 0
+ exit
+ip ssh version 2
+crypto key generate rsa modulus 1024
+banner motd # Unauthorized access to this device is prohibited. #
+end

@@ -1,18 +1,13 @@
+enable
 conf t
 clock timezone UTC 0
-
-! A1 configuration for Multiple Spanning Tree
 hostname A1
 banner motd # A1, Multiple Spanning Tree #
 spanning-tree mode rapid-pvst
-
-! Console line configuration
 line con 0
  exec-timeout 0 0
  logging synchronous
  exit
-
-! Interface configuration
 interface range g1/0/1-24, g1/1/1-4, g0/0
  shutdown
  exit
@@ -23,8 +18,6 @@ interface range g1/0/1-4
 interface g1/0/23
  no shutdown
  exit
-
-! VLAN configuration
 vlan 2
  name SecondVLAN
  exit
@@ -37,7 +30,4 @@ vlan 4
 vlan 5
  name FifthVLAN
  exit
-
-! Saving the configuration
 end
-wr

@@ -1,0 +1,11 @@
+enable
+conf t
+router ospfv3 123
+address-family ipv6 unicast
+ area 2 range 2001:db8:acad:2000::/52
+ exit-address-family
+ exit
+interface g0/0/0
+ ospfv3 network point-to-point
+ exit
+end

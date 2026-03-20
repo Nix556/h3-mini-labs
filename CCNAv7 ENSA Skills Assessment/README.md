@@ -186,7 +186,7 @@ copy running-config tftp
 
 ```
 
-TFTP server var PC-B.
+TFTP server var PC-B, som kørte Tftpd64.
 
 ---
 

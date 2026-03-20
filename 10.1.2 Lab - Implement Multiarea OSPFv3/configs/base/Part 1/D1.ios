@@ -19,6 +19,4 @@ interface g1/0/23
  ipv6 add fe80::d1:1 link-local
  no shutdown
  exit
-
 end
-wr

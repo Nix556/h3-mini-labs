@@ -1,0 +1,38 @@
+enable
+conf t
+hostname R1
+no ip domain-lookup
+ip domain-name ccnalab.com
+service password-encryption
+enable secret ciscoenpass
+username admin privilege 15 password admin1pass
+security passwords min-length 10
+line con 0
+ password ciscoconpass
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 10 0
+ exit
+ip ssh version 2
+crypto key generate rsa modulus 1024
+interface GigabitEthernet0/0/0
+ description Link to R2
+ ip address 10.67.254.2 255.255.255.252
+ no shutdown
+ exit
+interface GigabitEthernet0/0/1
+ description LAN to S1/S2
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+ exit
+interface Loopback0
+ description Router Loopback
+ ip address 10.52.0.1 255.255.255.248
+ no shutdown
+ exit
+banner motd # Unauthorized access is prohibited. #
+end

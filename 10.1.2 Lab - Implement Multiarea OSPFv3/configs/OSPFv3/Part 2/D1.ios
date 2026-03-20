@@ -1,15 +1,13 @@
-ipv6 unicast-routing
-
+enable
+conf t
 ipv6 unicast-routing
 ipv6 router ospf 123
-router-id 1.1.1.2
-exit
+ router-id 1.1.1.2
+ exit
 interface g1/0/11
-ipv6 ospf 123 area 1
-exit
+ ipv6 ospf 123 area 1
+ exit
 interface g1/0/23
-ipv6 ospf 123 area 1
-exit
-
+ ipv6 ospf 123 area 1
+ exit
 end
-wr

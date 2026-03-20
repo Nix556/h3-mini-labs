@@ -1,8 +1,0 @@
-! Check spanning-tree root on A1
-show spanning-tree mode root
-
-! Lasty configure A1 to use MST
-show spanning-tree mode mst
-
-end 
-wr

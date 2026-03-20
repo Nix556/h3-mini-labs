@@ -1,0 +1,19 @@
+enable
+conf t
+ip tftp source-interface GigabitEthernet0/0/0
+ip tftp source-interface GigabitEthernet0/0/1
+router ospf 1
+ no network 192.168.1.0 0.0.0.255 area 0
+ exit
+ip access-list extended RT1-NAT
+ remark Match internal hosts for NAT (192.168.1.0/24)
+ permit ip 192.168.1.0 0.0.0.255 any
+exit
+interface GigabitEthernet0/0/0
+ ip nat outside
+ exit
+interface GigabitEthernet0/0/1
+ ip nat inside
+ exit
+ip nat inside source list RT1-NAT interface GigabitEthernet0/0/0 overload
+end

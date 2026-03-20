@@ -1,20 +1,18 @@
 enable
 conf t
-ip routing
 ipv6 unicast-routing
 router ospfv3 123
+router-id 3.3.3.1
 address-family ipv4 unicast
- router-id 3.3.3.2
  exit-address-family
 address-family ipv6 unicast
- router-id 3.3.3.2
  exit-address-family
 exit
-interface g1/0/11
- ospfv3 123 ipv4 area 2
- ospfv3 123 ipv6 area 2
+interface g0/0/0
+ ospfv3 123 ipv4 area 0
+ ospfv3 123 ipv6 area 0
  exit
-interface g1/0/23
+interface g0/0/1
  ospfv3 123 ipv4 area 2
  ospfv3 123 ipv6 area 2
  exit

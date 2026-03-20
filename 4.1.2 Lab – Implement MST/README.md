@@ -144,7 +144,7 @@ Hvis en switch har flere veje til root med samme cost, bruges andre værdier.
 I labbet ændrede vi cost:
 
 ```text
-interface f0/2
+interface G1/0/2
 spanning-tree mst 1 cost 1000
 ```
 
@@ -221,20 +221,6 @@ De viser:
 * hvem der er root
 * hvilke porte der er forwarding eller blocking
 * hvilke VLANs der er i hver MST instance
-
----
-
-## Hvad vi lærte i labbet
-
-I denne opgave arbejdede vi med:
-
-* konfiguration af MST
-* MST region og digest
-* VLAN til instance mapping
-* valg af root bridge
-* load balancing mellem VLANs
-* ændring af port cost
-* ændring af port priority
 
 ---
 

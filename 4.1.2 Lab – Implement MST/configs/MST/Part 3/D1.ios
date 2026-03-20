@@ -1,0 +1,11 @@
+enable
+conf t
+spanning-tree mst configuration
+ name CCNPv8
+ revision 1
+ instance 1 vlan 2
+ instance 2 vlan 4
+ exit
+spanning-tree mst 1 root primary
+spanning-tree mst 2 root primary
+end

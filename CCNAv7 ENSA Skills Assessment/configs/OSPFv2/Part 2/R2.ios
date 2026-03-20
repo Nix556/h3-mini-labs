@@ -1,0 +1,8 @@
+enable
+conf t
+router ospf 1
+ router-id 0.0.0.2
+ network 10.67.254.0 0.0.0.3 area 0
+ network 10.67.1.0 0.0.0.255 area 0
+ exit
+end

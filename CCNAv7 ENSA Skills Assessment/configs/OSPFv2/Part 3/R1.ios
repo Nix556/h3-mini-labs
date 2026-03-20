@@ -1,0 +1,14 @@
+enable
+conf t
+router ospf 1
+ passive-interface g0/0/1
+ passive-interface loopback0
+ auto-cost reference-bandwidth 1000
+ exit
+interface loopback0
+ ip ospf network point-to-point
+ exit
+interface g0/0/0
+ ip ospf hello-interval 30
+ exit
+end

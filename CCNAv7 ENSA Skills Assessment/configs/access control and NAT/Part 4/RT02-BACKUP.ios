@@ -1,7 +1,0 @@
-conf t
-
-! RT02 Backup TFTP configuration
-ip tftp source-interface GigabitEthernet0/0/1
-
-end
-write memory

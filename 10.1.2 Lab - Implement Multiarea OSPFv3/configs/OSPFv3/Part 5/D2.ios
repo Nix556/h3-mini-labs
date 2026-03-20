@@ -1,10 +1,13 @@
+enable
+conf t
 router ospfv3 123
-passive-interface g1/0/23
-
-no passive-interface g1/0/23
+ passive-interface g1/0/23
+ no passive-interface g1/0/23
 address-family ipv4 unicast
-passive-interface g1/0/23
-exit-address-family
+ passive-interface g1/0/23
+ exit-address-family
 address-family ipv6 unicast
-passive-interface g1/0/23
-exit-address-family
+ passive-interface g1/0/23
+ exit-address-family
+ exit
+end

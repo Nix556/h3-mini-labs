@@ -1,8 +1,0 @@
-conf t
-
-! Use both interfaces so either source IP may be used depending on route/source selection
-ip tftp source-interface GigabitEthernet0/0/0
-ip tftp source-interface GigabitEthernet0/0/1
-
-end
-write memory

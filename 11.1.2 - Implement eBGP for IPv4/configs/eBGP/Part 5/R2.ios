@@ -1,0 +1,6 @@
+enable
+conf t
+router bgp 500
+ neighbor 10.1.2.1 default-originate
+ exit
+end

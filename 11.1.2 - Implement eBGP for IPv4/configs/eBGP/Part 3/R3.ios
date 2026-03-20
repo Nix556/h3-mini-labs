@@ -1,0 +1,7 @@
+enable
+conf t
+router bgp 300
+ address-family ipv4
+ aggregate-address 192.168.3.0 255.255.255.0 summary-only
+ exit
+end

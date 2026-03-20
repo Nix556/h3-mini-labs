@@ -1,9 +1,0 @@
-ip route vrf Customer_A 192.168.2.0 255.255.255.0 g0/0/0 10.1.2.2
-ip route vrf Customer_A 192.168.3.0 255.255.255.0 s0/1/0 10.1.3.2
-ipv6 route vrf Customer_A 2001:db8:acad:2000::/64 g0/0/0 2001:db8:acad:1012::2
-ipv6 route vrf Customer_A 2001:db8:acad:3000::/64 s0/1/0 2001:db8:acad:1013::2
-
-ip route vrf Customer_B 192.168.2.0 255.255.255.0 g0/0/1.5 10.1.2.2
-ip route vrf Customer_B 192.168.3.0 255.255.255.0 g0/0/1.8 10.1.3.2
-ipv6 route vrf Customer_B 2001:db8:acad:2000::/64 g0/0/1.5 2001:db8:acad:1012::2
-ipv6 route vrf Customer_B 2001:db8:acad:3000::/64 g0/0/1.8 2001:db8:acad:1013::2
