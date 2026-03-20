@@ -1,4 +1,4 @@
-## VRF-Lite – Forklaring
+# VRF-Lite – Forklaring
 
 I denne opgave arbejdede vi med VRF-Lite (Virtual Routing and Forwarding). Formålet med VRF er at kunne have flere separate routing tables på den samme router.
 Det betyder i praksis, at en router kan fungere som om den var flere routere på samme tid.
@@ -24,7 +24,6 @@ Det betyder også at man kan genbruge de samme IP-adresser, fordi de ligger i fo
 ## Oprettelse af VRF
 
 Først opretter man VRF'erne på routeren.
-
 
 ip vrf Customer_A
 ip vrf Customer_B

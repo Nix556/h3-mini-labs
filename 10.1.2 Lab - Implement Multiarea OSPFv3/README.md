@@ -13,7 +13,7 @@ Det betyder at en OSPFv3 process kan route både IPv4 og IPv6 samtidig.
 
 ---
 
-# Hvordan OSPF fungerer
+## Hvordan OSPF fungerer
 
 OSPF er et link-state routing protocol.
 Det betyder at alle routere deler information om deres links med hinanden i form af LSA (Link-State Advertisements).
@@ -28,7 +28,7 @@ Fordelen ved OSPF er at:
 
 ---
 
-# Multi-Area OSPF
+## Multi-Area OSPF
 
 I dette lab brugte vi flere OSPF områder.
 
@@ -42,7 +42,7 @@ Area 0 er den centrale backbone som alle andre områder skal forbinde til.
 
 Strukturen i netværket var derfor:
 
-```
+```text
 Area 1 ---- R1 ----\
                     R2
 Area 2 ---- R3 ----/
@@ -57,13 +57,13 @@ Dette design bruges i større netværk fordi det:
 
 ---
 
-# IPv6 og OSPFv3
+## IPv6 og OSPFv3
 
 OSPFv3 kører oven på IPv6.
 Det betyder at OSPFv3 control traffic bruger IPv6 link-local adresser.
 Derfor skulle vi aktivere IPv6 routing på routerne:
 
-```
+```text
 ipv6 unicast-routing
 ```
 
@@ -71,7 +71,7 @@ Alle interfaces fik også en link-local adresse, som OSPF bruger til neighbor co
 
 ---
 
-# OSPFv3 Address Families
+## OSPFv3 Address Families
 
 I labbet brugte vi OSPFv3 Address Families (AF).
 Det gør at en OSPFv3 process kan håndtere både:
@@ -81,7 +81,7 @@ Det gør at en OSPFv3 process kan håndtere både:
 
 Eksempel:
 
-```
+```text
 router ospfv3 123
  address-family ipv4 unicast
  address-family ipv6 unicast
@@ -91,13 +91,13 @@ Det betyder at routeren bruger samme OSPF process til begge protokoller.
 
 ---
 
-# Aktivering af OSPF på interfaces
+## Aktivering af OSPF på interfaces
 
 OSPFv3 bliver aktiveret direkte på interfaces.
 
 Eksempel:
 
-```
+```text
 interface g0/0/0
  ospfv3 123 ipv4 area 0
  ospfv3 123 ipv6 area 0
@@ -112,32 +112,32 @@ begge i Area 0.
 
 ---
 
-# Neighbor Relationships
+## Neighbor Relationships
 
 For at OSPF kan virke, skal routerne først blive neighbors.
 Det sker ved at routerne sender Hello packets til hinanden.
 Når neighbors er etableret, går de i FULL state, og de udveksler deres LSDB.
 Dette kan verificeres med:
 
-```
+```text
 show ospfv3 neighbor
 ```
 
 ---
 
-# Routing Tables
+## Routing Tables
 
 Når OSPF neighbors er etableret, begynder routerne at lære routes.
 
 IPv4 routes kan ses med:
 
-```
+```text
 show ip route ospfv3
 ```
 
 IPv6 routes kan ses med:
 
-```
+```text
 show ipv6 route ospf
 ```
 
@@ -145,13 +145,13 @@ Routerne bruger disse routes til at finde den korteste vej gennem netværket.
 
 ---
 
-# OSPF Database (LSDB)
+## OSPF Database (LSDB)
 
 OSPF gemmer alle netværksinformationer i Link State Database.
 
 Dette kan ses med:
 
-```
+```text
 show ospfv3 database
 ```
 
@@ -165,13 +165,13 @@ Routerne bruger LSDB til at beregne routing paths med SPF algoritmen.
 
 ---
 
-# Passive Interfaces
+## Passive Interfaces
 
 Vi konfigurerede også passive interfaces.
 
 Eksempel:
 
-```
+```text
 passive-interface g1/0/23
 ```
 
@@ -189,13 +189,13 @@ Fordele:
 
 ---
 
-# Route Summarization
+## Route Summarization
 
 Vi implementerede også route summarization.
 
 Eksempel:
 
-```
+```text
 area 1 range 2001:db8:acad:1000::/52
 ```
 
@@ -209,7 +209,7 @@ Fordele:
 
 ---
 
-# Point-to-Point Links
+## Point-to-Point Links
 
 Ethernet interfaces bruger normalt broadcast network type, hvor OSPF vælger:
 
@@ -219,7 +219,7 @@ Ethernet interfaces bruger normalt broadcast network type, hvor OSPF vælger:
 Men forbindelserne mellem routerne i labbet var point-to-point links.
 Derfor ændrede vi network type til:
 
-```
+```text
 ospfv3 network point-to-point
 ```
 
@@ -227,32 +227,20 @@ Fordelen er at der ikke længere vælges DR og BDR, hvilket gør OSPF simplere.
 
 ---
 
-# Default Route Advertisement
+## Default Route Advertisement
 
 Til sidst konfigurerede vi en default route på R2.
 
-```
+```text
 ip route 0.0.0.0 0.0.0.0 lo0
 ipv6 route ::/0 lo0
 ```
 
 Derefter blev den annonceret i OSPF:
 
-```
+```text
 default-information originate
 ```
 
 Det betyder at alle routere i netværket lærer en default route via R2.
 Hvis routerne ikke kender destinationen, sender de trafikken til R2.
-
-D1# show ipv6 interface brief
-D1# show ipv6 cef
-D1# show ipv6 ospf
-D1# show ipv6 protocols
-D1# show ipv6 ospf neighbor
-RT1# show ipv6 route ospf
-RT1# show ip ospfv3 neighbor
-D1# show ipv6 route ospf
-RT1# show ip route ospfv3
-D1# show ipv6 ospf database
-RT1# show ospfv3 database
