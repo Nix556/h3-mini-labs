@@ -1,59 +1,203 @@
-# Project overview and usage
+# CCNAv7 ENSA Skills Assessment – Forklaring
 
-**Project Structure:**
+I denne opgave arbejdede vi med en samlet “final exam”, hvor vi skulle konfigurere et helt netværk fra bunden.
 
-- **configs/base/**: Full base configs for routers and switches (complete router/switch configs you can paste into devices).
-- **configs/ospf/**: Per-router OSPF full blocks for reference or bulk application.
-- **configs/access control and NAT/**: Access control lists, NAT-only snippets, and backup helper files.
+Formålet var at få alle enheder til at fungere sammen med:
 
-## What you built in this lab
+- IPv4 connectivity
+- Dynamisk routing (OSPF)
+- Sikkerhed (SSH + ACL)
+- NAT (PAT)
+- Backup af konfiguration
 
-- `configs/access control and NAT/RT01-NAT.cfg`: NAT/PAT config for RT01 and a `router ospf 1` `no network 192.168.1.0 0.0.0.255 area 0` block to remove the R1 LAN from OSPF.
-- `configs/access control and NAT/RT01-BACKUP.cfg`: sets `ip tftp source-interface GigabitEthernet0/0/0` and `GigabitEthernet0/0/1` (RT01 backup helper).
-- `configs/access control and NAT/RT02-BACKUP.cfg`: sets `ip tftp source-interface GigabitEthernet0/0/1` (RT02 backup helper).
-- `configs/access control and NAT/RT02-SECURITY.cfg`: access-list used to control access to the web server (adjusted to allow LAN traffic and TFTP where needed).
+Netværket bestod af:
 
-Quick file links:
+- 2 routere (R1 og R2)
+- 2 switches (S1 og S2)
+- 2 PCs
 
-- [configs/access control and NAT/RT01-NAT.cfg](configs/access%20control%20and%20NAT/RT01-NAT.cfg)
-- [configs/access control and NAT/RT01-BACKUP.cfg](configs/access%20control%20and%20NAT/RT01-BACKUP.cfg)
-- [configs/access control and NAT/RT02-BACKUP.cfg](configs/access%20control%20and%20NAT/RT02-BACKUP.cfg)
-- [configs/access control and NAT/RT02-SECURITY.cfg](configs/access%20control%20and%20NAT/RT02-SECURITY.cfg)
+---
 
-## How to apply a patch file
+## Part 1 – Basic Setup
 
-1. Connect to the router and enter privileged exec (`enable`).
-2. Enter global configuration mode: `configure terminal`.
-3. Paste the contents of the desired file (copy/paste the CLI commands from the file into the router session).
-4. Exit and save: `end` then `write memory`.
+Først nulstillede vi alle devices:
 
-## TFTP backup guidance
+- startup-config blev slettet
+- VLAN database blev slettet på switches
+- devices blev genstartet
 
-- To push a running-config from a router to a TFTP server:
+Derefter lavede vi grundkonfiguration på alle enheder.
+
+---
+
+### Routere
+
+Vi konfigurerede:
+
+- Hostname (R1, R2)
+- Domain name (ccna-lab.com)
+- Enable password
+- Console password
+- Lokal bruger (admin)
+- SSH (kun SSH adgang på VTY)
+- Password encryption
+- MOTD banner
+
+Interfaces blev sat op med:
+
+- IP adresser
+- Description
+- no shutdown
+
+Derudover:
+
+- Loopback interface
+- RSA keys (til SSH)
+
+---
+
+### Switches
+
+På switches konfigurerede vi:
+
+- Hostname
+- Domain name
+- Passwords
+- SSH adgang
+- Lokal bruger
+
+Derudover:
+
+- Shutdown af alle unused ports (sikkerhed)
+- Management IP på VLAN 1
+- Default gateway
+
+---
+
+## Part 2 – OSPF (Single Area)
+
+Vi konfigurerede OSPF mellem R1 og R2.
+
+- Process ID: 1
+- Router-ID blev sat manuelt
+- Netværk blev annonceret med wildcard masks
+
+R2’s loopback blev ikke inkluderet i OSPF.
+
+Formålet er at få dynamisk routing mellem alle netværk.
+
+---
+
+## Part 3 – OSPF Optimering
+
+Her finjusterede vi OSPF.
+
+---
+
+### R1
+
+- Passive interfaces på LAN og loopback
+- Reference bandwidth sat til 1000 Mbps
+- Loopback sat som point-to-point
+- Hello interval sat til 30 sek
+
+---
+
+### R2
+
+- Passive interfaces
+- Reference bandwidth = 1000 Mbps
+
+Default route:
+
+- Statisk default route via loopback
+- Annonceret i OSPF med `default-information originate`
+
+Derudover:
+
+- Hello interval = 30 sek
+- OSPF priority = 50 (for at blive DR)
+
+---
+
+## Part 4 – ACL, NAT og Backup
+
+---
+
+### PC konfiguration
+
+Vi satte IP konfiguration på:
+
+- PC-A: 192.168.1.50
+- PC-B: 10.67.1.50
+
+Testede:
+
+- Ping mellem PC’er
+- SSH
+- HTTPS
+
+---
+
+### ACL på R2
+
+Vi lavede en extended ACL:
+
+Formål:
+
+- Styre adgang til server (209.165.201.1)
+
+Regler:
+
+- HTTPS blokkeret
+- SSH blokkeret
+- Alt andet trafik tilladt
+
+ACL blev applied inbound på interface mod R1.
+
+---
+
+### NAT (PAT) på R1
+
+R1’s LAN bruger 192.168.1.0/24, som ikke er en del af 10.0.0.0/8 → derfor NAT.
+
+Vi gjorde følgende:
+
+- Fjernede LAN fra OSPF
+- Lavede ACL til NAT
+- Konfigurerede PAT (overload)
+
+Interfaces:
+
+- G0/0/1 = inside
+- G0/0/0 = outside
+
+Formålet er at oversætte private adresser til en gyldig adresse ud mod netværket.
+
+---
+
+### Backup med TFTP
+
+Vi tog backup af alle devices:
 
 ```text
+
 copy running-config tftp
-Address or name of remote host []? <TFTP_SERVER_IP>
-Destination filename [running-config]? <filename>
+
 ```
 
-- If the router can't complete the transfer:
-- On the router set the source interface used for TFTP replies (example for RT1):
+TFTP server var PC-B.
 
-```text
-configure terminal
-ip tftp source-interface GigabitEthernet0/0/0
-end
-write memory
-```
+---
 
-- Ensure the TFTP server (SolarWinds TFTP or other) is running with a writable root folder and the host firewall allows UDP 69 and the tftp server program.
-- If ACLs exist on routers in the path, permit UDP 69 and ephemeral UDP replies between the router and the TFTP host.
+## Konklusion
 
-## Useful verification commands (on routers)
+Vi har sat et netværk op fra bunden med:
 
-- `show running-config | section router ospf`
-- `show ip ospf neighbor`
-- `show access-lists RT1-NAT` (or RT2-SECURITY)
-- `show running-config interface GigabitEthernet0/0/0`
-- `show ip nat translations` and `show ip nat statistics` (after generating traffic)
+- Dynamisk routing (OSPF)
+- Trafik kontrol (ACL)
+- Adresse oversættelse (NAT)
+- Sikker remote adgang (SSH)
+- Backup (TFTP)
+
+Opgaven viser hvordan flere teknologier arbejder sammen for at få et netværk til at fungere stabilt og sikkert.
