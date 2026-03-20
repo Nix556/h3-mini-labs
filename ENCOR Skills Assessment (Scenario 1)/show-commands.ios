@@ -1,0 +1,124 @@
+!Part 1 – Basic Connectivity & Interfaces | (All devices)
+show ip interface brief
+show ipv6 interface brief
+show running-config
+show version
+
+------------------------------------
+
+!Part 2 - Layer 2 (Switching, VLANs, Trunks, EtherChannel) | (D1, D2, A1)
+show vlan brief
+show interfaces trunk
+show etherchannel summary
+show spanning-tree
+show spanning-tree vlan 100
+show spanning-tree vlan 101
+show spanning-tree vlan 102
+
+! Verify trunk and native VLAN
+show interfaces trunk
+
+! Verify RSTP mode and root roles
+show run | include spanning-tree
+show spanning-tree root
+
+! Verify EtherChannel
+show etherchannel summary
+show interfaces port-channel 1
+show interfaces port-channel 2
+show interfaces port-channel 12
+
+! Verify access ports (PC ports)
+show run interface g1/0/1  (D1, D2)
+show run interface g1/0/23 (A1)
+show run interface g1/0/24 (A1)
+
+! Verify DHCP (D1, D2)
+show ip dhcp pool
+show ip dhcp binding
+show ip dhcp server statistics
+
+------------------------------------
+
+!part 3 - Routing (OSPFv2, OSPFv3, BGP) | (R1, R3, D1, D2)
+show ip ospf neighbor
+show ip ospf interface brief
+show ip protocols
+show run | section router ospf
+
+show ipv6 ospf neighbor
+show ipv6 ospf interface brief
+show ipv6 protocols
+show run | section ipv6 router ospf
+
+! Routing tables
+show ip route
+show ip route ospf
+show ip route bgp
+
+show ipv6 route
+show ipv6 route ospf
+show ipv6 route bgp
+
+! Bgp verification (R1, R2)
+show ip bgp summary
+show bgp ipv6 unicast summary
+show ip bgp
+show bgp ipv6 unicast
+show run | section router bgp
+
+! Verify adverised routes (R1, R2)
+show ip bgp neighbors advertised-routes
+show bgp ipv6 unicast neighbors advertised-routes
+
+! End to end test (D1, D2)
+ping 2.2.2.2
+ping 2001:db8:2222::1
+
+------------------------------------
+
+!Part 4 – FHRP (HSRP) and IP SLA | (D1, D2)
+show standby brief
+show standby
+
+! Verify tracking
+show track
+
+! Verify IP SLA
+show ip sla summary
+show ip sla statistics
+show run | section ip sla
+
+------------------------------------
+
+!Part 5 – Security (AAA and Radius) | (All devices)
+show run | include secret
+show run | include username
+
+! Verify AAA
+show run | section aaa
+show aaa users
+
+! Verify Radius
+show run | section radius
+show radius statistics
+
+! Test login (SSH)
+ssh raduser@10.0.100.x
+
+------------------------------------
+
+!Part 6 – Network Management (NTP, Syslog, SNMP) | (All devices)
+show clock
+show ntp status
+show ntp associations
+show run | section ntp
+
+! Verify Syslog
+show run | include logging
+show logging
+
+! Verify SNMP
+show run | include snmp
+show snmp
+show ip access-list SNMP-NMS
