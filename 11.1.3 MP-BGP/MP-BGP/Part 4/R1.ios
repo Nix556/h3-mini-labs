@@ -1,0 +1,7 @@
+enable
+conf t
+router bgp 1000
+ address-family ipv6
+ aggregate-address 2001:DB8:ACAD:1000::/52 summary-only
+ exit
+end
