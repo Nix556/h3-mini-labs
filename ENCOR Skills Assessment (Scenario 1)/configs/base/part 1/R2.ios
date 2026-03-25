@@ -1,6 +1,5 @@
 enable
 conf t
-
 hostname R2
 ipv6 unicast-routing
 no ip domain lookup
@@ -21,3 +20,4 @@ interface Loopback 0
  ipv6 address 2001:db8:2222::1/128
  no shutdown
  exit
+end

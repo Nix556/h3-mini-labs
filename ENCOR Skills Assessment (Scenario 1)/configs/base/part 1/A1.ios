@@ -1,6 +1,5 @@
 enable
 conf t
-
 hostname A1
 no ip domain lookup
 banner motd # A1, ENCOR Skills Assessment, Scenario 1 #
@@ -29,3 +28,4 @@ interface vlan 100
 interface range g1/0/5-22
  shutdown
  exit
+end

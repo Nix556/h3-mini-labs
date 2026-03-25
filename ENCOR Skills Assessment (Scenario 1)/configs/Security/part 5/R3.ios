@@ -1,9 +1,7 @@
 enable
 conf t
-
 enable algorithm-type SCRYPT secret cisco12345cisco
 username sadmin privilege 15 algorithm-type SCRYPT secret cisco12345cisco
-
 aaa new-model
 radius server RADIUS
  address ipv4 10.0.100.6 auth-port 1812 acct-port 1813
@@ -19,4 +17,5 @@ line vty 0 4
 line vty 5 15
  login authentication default
  transport input ssh
+ exit
 end

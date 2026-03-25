@@ -1,5 +1,5 @@
 enable
 conf t
-
 enable algorithm-type SCRYPT secret cisco12345cisco
 username sadmin privilege 15 algorithm-type SCRYPT secret cisco12345cisco
+end

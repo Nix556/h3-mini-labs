@@ -1,6 +1,5 @@
 enable
 conf t
-
 ip sla 4
  icmp-echo 10.0.10.1
  frequency 5

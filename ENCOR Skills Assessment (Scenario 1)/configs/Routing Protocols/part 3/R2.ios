@@ -1,6 +1,5 @@
 enable
 conf t
-
 ip route 0.0.0.0 0.0.0.0 loopback0
 ipv6 route ::/0 loopback0
 router bgp 500
@@ -19,3 +18,5 @@ router bgp 500
   network 2001:db8:2222::/128
   network ::/0
   exit-address-family
+  exit
+end

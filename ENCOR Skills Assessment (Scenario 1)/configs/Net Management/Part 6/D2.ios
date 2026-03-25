@@ -1,7 +1,6 @@
 enable
 conf t
 clock timezone UTC 0
-
  ntp server 10.0.11.1
  logging trap warning
  logging host 10.0.100.5

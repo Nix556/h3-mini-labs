@@ -1,6 +1,5 @@
 enable
 conf t
-
 hostname R3
 ipv6 unicast-routing
 no ip domain lookup
@@ -21,3 +20,4 @@ interface s0/1/0
  ipv6 address 2001:DB8:100:1013::3/64
  no shutdown
  exit
+end

@@ -1,6 +1,5 @@
 enable
 conf t
-
 spanning-tree mode rapid-pvst
 interface range g1/0/1-2
  switchport mode trunk
